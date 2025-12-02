@@ -1,0 +1,6 @@
+
+Respond with a JSON object including two key elements:
+{
+  "analysis": Reasoning behind your answer.,
+  "answer":  A boolean (True/False) answer.
+}

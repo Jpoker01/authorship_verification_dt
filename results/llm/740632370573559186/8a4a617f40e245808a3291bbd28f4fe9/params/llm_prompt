@@ -1,0 +1,24 @@
+
+        <s>[INST] <<SYS>>
+
+Respond with a JSON object including two key elements:
+{
+  "analysis": Reasoning behind your answer.,
+  "answer":  A boolean (True/False) answer.
+}
+
+<</SYS>>
+
+
+Verify if the input texts were written by the same author.
+Do not consider topic differences. Focus on grammatical styles. 
+Analyze the writing styles of the input texts, disregarding the differences in topic and content. 
+Focus on linguistic features such as phrasal verbs, modal verbs, punctuation, rare words, affixes, quantities, 
+humor, sarcasm, typographical errors, and misspellings. 
+ 
+        The input texts (Text 1 and Text 2) are delimited with triple backticks. ```Text 1: X, 
+
+Text 2: X```
+
+[/INST]
+        

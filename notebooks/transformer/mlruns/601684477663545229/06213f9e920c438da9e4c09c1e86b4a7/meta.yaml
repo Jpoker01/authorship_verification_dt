@@ -1,0 +1,14 @@
+artifact_uri: file:///home/jovyan/authorship_verification_dt/notebooks/transformer/mlruns/601684477663545229/06213f9e920c438da9e4c09c1e86b4a7/artifacts
+end_time: 1764686567834
+entry_point_name: ''
+experiment_id: '601684477663545229'
+lifecycle_stage: active
+run_id: 06213f9e920c438da9e4c09c1e86b4a7
+run_name: /home/jovyan/authorship_verification_dt/results/transformer / 20251202_1542_JP_longformer-base-4096_results
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764686567473
+status: 3
+tags: []
+user_id: jovyan

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/jovyan/authorship_verification_dt/notebooks/transformer/mlruns/601684477663545229/51b03a7153334050b0d584a86b4c5a46/artifacts
+end_time: 1764425109957
+entry_point_name: ''
+experiment_id: '601684477663545229'
+lifecycle_stage: active
+run_id: 51b03a7153334050b0d584a86b4c5a46
+run_name: /home/jovyan/authorship_verification_dt/results/transformer / 20251129_1505_JP_bigbird-roberta-base_results
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764425109602
+status: 3
+tags: []
+user_id: jovyan

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/jovyan/authorship_verification_dt/notebooks/transformer/mlruns/601684477663545229/5887967fecf4498090e175713a69925f/artifacts
+end_time: 1764361786931
+entry_point_name: ''
+experiment_id: '601684477663545229'
+lifecycle_stage: active
+run_id: 5887967fecf4498090e175713a69925f
+run_name: /home/jovyan/authorship_verification_dt/results/transformer / 20251128_2129_JP_ModernBERT-large_results
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764361786554
+status: 3
+tags: []
+user_id: jovyan

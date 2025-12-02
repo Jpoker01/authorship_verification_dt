@@ -1,0 +1,11 @@
+.git
+.ipynb_checkpoints/
+
+/data/01_processed
+/data/02_models
+/data/03_model_output
+
+/conf/local/*
+
+requirements.txt
+
