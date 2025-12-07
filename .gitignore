@@ -1,4 +1,5 @@
 .git
+.git-credentials
 .ipynb_checkpoints/
 
 /data/01_processed
