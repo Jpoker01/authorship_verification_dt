@@ -1,6 +1,0 @@
-
-Verify if the input texts were written by the same author.
-Do not consider topic differences. Focus on grammatical styles. 
-Analyze the writing styles of the input texts, disregarding the differences in topic and content. 
-Focus on linguistic features such as phrasal verbs, modal verbs, punctuation, rare words, affixes, quantities, 
-humor, sarcasm, typographical errors, and misspellings. 
