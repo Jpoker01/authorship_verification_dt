@@ -4,8 +4,6 @@ This is a frontend application developed as part of a diploma thesis on authorsh
 
 It has been built using the combination of React, TypeScript and Vite.
 
-Author icons created by edt.im - Flaticon; 
-available at: https://www.flaticon.com/free-icons/author
 
 
 
