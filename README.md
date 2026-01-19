@@ -1,7 +1,8 @@
 # Authorship verification using chosen artificial intelligence methods
 
-This project folder includes all the work performed in scope of the diploma thesis 'Authorship verification using chosen artificial intelligence methods'.
-<LINK_TO_BE_ADDED>
+This project folder includes all the work performed in scope of the diploma thesis 'Authorship verification using chosen artificial intelligence methods'.  
+The final deployed website can be accesed through: <LINK_TO_BE_ADDED>  
+The diploma thesis (in Czech) is available at: <LINK_TO_BE_ADDED>  
 
 ## Project structure
 
