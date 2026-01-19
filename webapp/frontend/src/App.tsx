@@ -39,11 +39,12 @@ function App() {
       setExpandedInstructions(function (prev) {
 
       if (prev.includes(index)) {
+        //returns a new list without the item
         return prev.filter(function (item) {
           return item !== index;
         });
       }
-
+      //if instruction not in instructions, add it
       var copy = prev.slice();
       copy.push(index);
       return copy;
