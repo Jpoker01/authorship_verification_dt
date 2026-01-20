@@ -17,6 +17,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+     /* for work with json */
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -27,3 +31,7 @@
   },
   "include": ["src"]
 }
+
+
+"resolveJsonModule": true,
+"esModuleInterop": true

@@ -2,34 +2,7 @@ import { useState } from 'react';
 import { AppHeader } from './components/AppHeader';
 import { Instructions } from './components/Instructions';
 
-
-const instructions = [
-  {
-    title: 'What is Authorship Verification?',
-    content: 'Authorship verification is the process of determining whether two texts were written by the same author. This technique uses stylometric analysis to compare writing patterns, vocabulary, syntax, and other linguistic features.'
-  },
-  {
-    title: 'How to Use This Tool',
-    content: 'Enter two text samples in the input fields below. The tool will analyze both texts and provide a similarity score indicating the likelihood that they were written by the same author. A higher percentage indicates greater similarity.'
-  },
-  {
-    title: 'Best Practices',
-    content: 'For optimal results, use text samples of at least 100 words each. Ensure the texts are in the same language and preferably from similar contexts (e.g., both formal or both informal). Remove any obvious formatting or citations that might skew the analysis.'
-  },
-  {
-    title: 'Understanding the Results',
-    content: 'The percentage score represents the confidence level of authorship similarity. Scores above 70% suggest strong similarity, 50-70% indicates moderate similarity, and below 50% suggests different authors. Consider the context and sample size when interpreting results.'
-  }
-];
-
-//vice citaci do uvodu
-//metodika v budoucim case
-//uvest url
-//doplnit desetinna mista
-//doplnit mezeru mezi procenta a cisla ve vysledcich
-//tabulka - zarovnat s textem
-//uvest citaci na jednotlive modely
-//architektura webovky
+import instructions from './assets/data/instructions.json';
 
 function App() {
   //returns an empty field expandedInstructions, and function setExpandedInstructions to replace expandedInstructions
