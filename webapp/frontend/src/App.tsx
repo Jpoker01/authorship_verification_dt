@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { AppHeader } from './components/AppHeader';
 import { Instructions } from './components/Instructions';
 import { TextVerification } from './components/TextVerification.tsx';
+import { Results } from './components/Results';
 
 import instructions from './assets/data/instructions.json';
 
@@ -12,6 +13,7 @@ function App() {
   const [result, setResult] = useState<number | null>(null);
   //returns an empty field expandedInstructions, and function setExpandedInstructions to replace expandedInstructions
   const [expandedInstructions, setExpandedInstructions] = useState<number[]>([]);
+
   //function to open or close instruction based on its current state
   function toggleInstruction(index: number) {
       setExpandedInstructions(function (prev) {
@@ -57,6 +59,7 @@ function App() {
           isAnalyzing={isAnalyzing}
           onAnalyze={handleAnalyze}
         />
+          {result !== null && <Results result={result} />}
         <Instructions
           instructions={instructions}
           expandedInstructions={expandedInstructions}
