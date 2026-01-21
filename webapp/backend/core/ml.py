@@ -2,7 +2,6 @@
 Machine Learning module for authorship verification.
 Uses TF-IDF with absolute difference and logistic classifier.
 """
-import os
 import joblib
 from pathlib import Path
 import numpy as np
@@ -129,8 +128,16 @@ class AuthorshipVerifier:
         Returns:
             Probability estimate based on simple features
         """
+        # Handle empty texts
+        if not text1 or not text2:
+            return 0.5  # Neutral probability for empty texts
+        
         # Simple features
-        len_ratio = min(len(text1), len(text2)) / max(len(text1), len(text2))
+        max_len = max(len(text1), len(text2))
+        if max_len == 0:
+            len_ratio = 1.0
+        else:
+            len_ratio = min(len(text1), len(text2)) / max_len
         
         # Word overlap
         words1 = set(text1.lower().split())
@@ -141,12 +148,16 @@ class AuthorshipVerifier:
             word_overlap = len(words1 & words2) / max(len(words1), len(words2))
         
         # Average sentence length similarity
-        sentences1 = text1.split('.')
-        sentences2 = text2.split('.')
-        avg_len1 = np.mean([len(s.split()) for s in sentences1 if s.strip()])
-        avg_len2 = np.mean([len(s.split()) for s in sentences2 if s.strip()])
-        if avg_len1 + avg_len2 > 0:
-            len_sim = 1 - abs(avg_len1 - avg_len2) / (avg_len1 + avg_len2)
+        sentences1 = [s.strip() for s in text1.split('.') if s.strip()]
+        sentences2 = [s.strip() for s in text2.split('.') if s.strip()]
+        
+        if sentences1 and sentences2:
+            avg_len1 = np.mean([len(s.split()) for s in sentences1])
+            avg_len2 = np.mean([len(s.split()) for s in sentences2])
+            if avg_len1 + avg_len2 > 0:
+                len_sim = 1 - abs(avg_len1 - avg_len2) / (avg_len1 + avg_len2)
+            else:
+                len_sim = 0.5
         else:
             len_sim = 0.5
         
