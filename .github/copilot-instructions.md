@@ -83,8 +83,10 @@ npm run typecheck    # TypeScript type checking
 #### Running the Backend
 ```bash
 cd webapp/backend
-# Install dependencies (requirements.txt should be in parent or specific location)
-python main.py       # Or uvicorn main:app --reload
+# Install dependencies (if requirements.txt exists)
+pip install -r requirements.txt
+# Run with uvicorn
+uvicorn main:app --reload
 ```
 
 #### Backend Code Style
@@ -118,7 +120,7 @@ python main.py       # Or uvicorn main:app --reload
 ### Adding a New API Endpoint
 1. Create or update route handler in `/webapp/backend/routers`
 2. Define Pydantic schemas in `/webapp/backend/schemas`
-3. Update `/webapp/backend/main.py` if new router needs to be included
+3. Import and include the router in `/webapp/backend/main.py` using `app.include_router()`
 
 ### Adding a New Frontend Component
 1. Create component in appropriate directory under `/webapp/frontend/src`
