@@ -53,7 +53,9 @@ export function TextVerification({
 
       <div className="flex justify-center">
         <button
-          onClick={onAnalyze}
+          onClick={() => {
+            onAnalyze();
+          }}
           disabled={!text1.trim() || !text2.trim() || isAnalyzing}
           className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-cyan-600 disabled:from-slate-400 disabled:to-slate-500 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:shadow-none transition-all transform hover:scale-105 active:scale-90"
         >

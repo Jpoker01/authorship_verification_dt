@@ -8,9 +8,9 @@ interface ResultsSectionProperties {
 //set the result color, text and border color based on the probability score
 export function Results({ result }: ResultsSectionProperties) {
   const getResultColor = (score: number) => {
-    if (score >= 70) return 'from-emerald-400 to-teal-400';
-    if (score >= 50) return 'from-amber-400 to-orange-400';
-    return 'from-rose-400 to-red-400';
+    if (score >= 70) return 'from-emerald-500 to-teal-500';
+    if (score >= 50) return 'from-amber-500 to-orange-500';
+    return 'from-rose-500 to-red-500';
   };
 
   const getResultText = (score: number) => {
@@ -32,7 +32,7 @@ export function Results({ result }: ResultsSectionProperties) {
     });
   }, [result]);
   return (
-    <div className="bg-white rounded-2xl mb-8 shadow-lg p-8 animate-fadeIn">
+    <div id="results-section" className="bg-white rounded-2xl mb-8 shadow-lg p-8 animate-fadeIn">
       <h2 className="text-2xl font-semibold text-slate-700 mb-6">Results</h2>
 
       <div className="mb-6">

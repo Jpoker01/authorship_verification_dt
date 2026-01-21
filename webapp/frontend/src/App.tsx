@@ -31,6 +31,13 @@ function App() {
     });
   }
 
+    useEffect(() => {
+      if (result !== null) {
+        const el = document.getElementById("results-section");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, [result]);
+
   const handleAnalyze = () => {
     if (!text1.trim() || !text2.trim()) {
       return;
