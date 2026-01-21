@@ -1,0 +1,36 @@
+"""
+Prediction router for authorship verification API.
+"""
+from fastapi import APIRouter, HTTPException
+from schemas.prediction import PredictionRequest, PredictionResponse
+from core.ml import get_verifier
+
+router = APIRouter(
+    prefix="/predict",
+    tags=["prediction"]
+)
+
+
+@router.post("/", response_model=PredictionResponse)
+async def predict_authorship(request: PredictionRequest):
+    """
+    Predict whether two texts are written by the same author.
+    
+    Args:
+        request: PredictionRequest containing text1 and text2
+    
+    Returns:
+        PredictionResponse with probabilities and prediction
+    
+    Raises:
+        HTTPException: If prediction fails
+    """
+    try:
+        verifier = get_verifier()
+        result = verifier.predict(request.text1, request.text2)
+        return PredictionResponse(**result)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Prediction failed: {str(e)}"
+        )
