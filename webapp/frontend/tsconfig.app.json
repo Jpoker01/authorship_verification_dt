@@ -31,7 +31,3 @@
   },
   "include": ["src"]
 }
-
-
-"resolveJsonModule": true,
-"esModuleInterop": true

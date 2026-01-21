@@ -3,7 +3,7 @@ Prediction router for authorship verification API.
 """
 from fastapi import APIRouter, HTTPException
 from schemas.prediction import PredictionRequest, PredictionResponse
-from core.ml import get_verifier
+from core import ml
 
 router = APIRouter(
     prefix="/predict",
@@ -26,8 +26,7 @@ async def predict_authorship(request: PredictionRequest):
         HTTPException: If prediction fails
     """
     try:
-        verifier = get_verifier()
-        result = verifier.predict(request.text1, request.text2)
+        result = ml.predict(request.text1, request.text2)
         return PredictionResponse(**result)
     except Exception as e:
         raise HTTPException(
