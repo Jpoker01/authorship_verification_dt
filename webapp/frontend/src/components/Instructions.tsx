@@ -19,7 +19,7 @@ export function Instructions({
   onToggle
 }: InstructionsProperties) {
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+    <div id="instructions-section" className="bg-white rounded-2xl shadow-xl p-8 mb-8">
       <h2 className="text-2xl font-semibold text-slate-700 mb-6">Instructions</h2>
         {/*tailwind helper for vertical spacing between elements*/}
         <div className="space-y-3">
