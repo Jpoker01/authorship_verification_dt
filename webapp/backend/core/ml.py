@@ -168,21 +168,19 @@ class AuthorshipVerifier:
     
     def predict(self, text1: str, text2: str) -> dict:
         """
-        Predict authorship and return detailed results.
+        Predict authorship and return probability.
         
         Args:
             text1: First text to compare
             text2: Second text to compare
         
         Returns:
-            Dictionary with prediction results
+            Dictionary with same_author_probability
         """
         probability = self.predict_probability(text1, text2)
         
         return {
-            "same_author_probability": probability,
-            "different_author_probability": 1.0 - probability,
-            "prediction": "same_author" if probability > 0.5 else "different_author"
+            "same_author_probability": probability
         }
 
 

@@ -29,24 +29,12 @@ class PredictionResponse(BaseModel):
         ge=0.0,
         le=1.0
     )
-    different_author_probability: float = Field(
-        ..., 
-        description="Probability that texts are written by different authors",
-        ge=0.0,
-        le=1.0
-    )
-    prediction: str = Field(
-        ..., 
-        description="Predicted classification: 'same_author' or 'different_author'"
-    )
     
     model_config = {
         "json_schema_extra": {
             "examples": [
                 {
-                    "same_author_probability": 0.75,
-                    "different_author_probability": 0.25,
-                    "prediction": "same_author"
+                    "same_author_probability": 0.75
                 }
             ]
         }
