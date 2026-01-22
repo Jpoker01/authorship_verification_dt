@@ -1,0 +1,5 @@
+__pycache__/ - compiled python bytecode
+*.py[cod] - compiled python files .pyc, .pyo, .pyd
+*$py.class - Leftover compiled files from older tools
+*.so -compiled C extensions
+.Python - virtualend marker files
