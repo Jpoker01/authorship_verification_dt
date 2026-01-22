@@ -4,6 +4,7 @@ import { Instructions } from './components/Instructions';
 import { TextVerification } from './components/TextVerification.tsx';
 import { Results } from './components/Results';
 import { Error } from './components/Error';
+import { Footer } from  './components/Footer'
 
 import { predictAuthorship, ApiError } from './services/api';
 
@@ -88,6 +89,7 @@ function App() {
           expandedInstructions={expandedInstructions}
           onToggle={toggleInstruction}
         />
+        <Footer />
       </div>
     </div>
   );

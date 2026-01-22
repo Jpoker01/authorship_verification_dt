@@ -1,7 +1,7 @@
 [
   {
     "title": "What is Authorship Verification?",
-    "content": "Authorship verification is the process of determining whether two texts were written by the same author. This technique uses stylometric analysis to compare writing patterns, vocabulary, syntax, and other linguistic features."
+    "content": "Authorship verification is the process of determining whether two texts were written by the same or different author. This technique uses stylometric analysis to discern differences between texts based on their writing style and content. This tool uses a machine learning model trained on a large corpus of text samples to perform stylometric analysis of lexical features."
   },
   {
     "title": "How to Use This Tool",
