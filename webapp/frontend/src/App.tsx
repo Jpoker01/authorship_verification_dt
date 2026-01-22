@@ -3,6 +3,7 @@ import { AppHeader } from './components/AppHeader';
 import { Instructions } from './components/Instructions';
 import { TextVerification } from './components/TextVerification.tsx';
 import { Results } from './components/Results';
+import { predictAuthorship, ApiError } from './services/api';
 
 import instructions from './assets/data/instructions.json';
 
@@ -11,6 +12,7 @@ function App() {
   const [text2, setText2] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
   //returns an empty field expandedInstructions, and function setExpandedInstructions to replace expandedInstructions
   const [expandedInstructions, setExpandedInstructions] = useState<number[]>([]);
 
@@ -38,7 +40,7 @@ function App() {
       }
     }, [result]);
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     if (!text1.trim() || !text2.trim()) {
       return;
     }
@@ -46,11 +48,22 @@ function App() {
     setIsAnalyzing(true);
     setResult(null);
 
-    setTimeout(() => {
-      const randomResult = Math.floor(Math.random() * 40) + 50;
-      setResult(randomResult);
+    setError(null);
+    try {
+      const response = await predictAuthorship(text1, text2);
+      // Convert probability (0-1) to percentage (0-100)
+      const percentage = Math.round(response.same_author_probability * 100);
+      setResult(percentage);
+    } catch (err) {
+      if (err instanceof ApiError) {
+        setError(err.message);
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
+      console.error('Prediction error:', err);
+    } finally {
       setIsAnalyzing(false);
-    }, 2000);
+    }
   };
   return (
       //Fill screen horizontally, set the background color and gradients
@@ -66,6 +79,20 @@ function App() {
           isAnalyzing={isAnalyzing}
           onAnalyze={handleAnalyze}
         />
+          {error && (
+            <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8 rounded-lg">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm text-red-700">{error}</p>
+                </div>
+              </div>
+            </div>
+          )}
           {result !== null && <Results result={result} />}
         <Instructions
           instructions={instructions}

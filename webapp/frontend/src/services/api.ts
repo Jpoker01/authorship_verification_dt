@@ -1,4 +1,4 @@
-import { API_BASE_URL } from './config';
+import { API_BASE_URL, MIN_CHAR_COUNT, MAX_CHAR_COUNT } from './config';
 
 export interface PredictionRequest {
   text1: string;
@@ -30,11 +30,21 @@ export async function predictAuthorship(
   text2: string
 ): Promise<PredictionResponse> {
   try {
+    var text1_length = text1.trim().length;
+    var text2_length = text2.trim().length;
+
+    if (text1_length < MIN_CHAR_COUNT ||  text2_length < MIN_CHAR_COUNT) {
+      throw new ApiError('Text has less then 10000 characters. Please provide longer text.');
+    } else if (text1_length >  MAX_CHAR_COUNT || text2_length > MAX_CHAR_COUNT) {
+      throw new ApiError('Text has more then 100000 characters. Please provide shorter text.');
+    }
+
     const response = await fetch(`${API_BASE_URL}/predict/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      //convert to JSON
       body: JSON.stringify({
         text1,
         text2,

@@ -30,8 +30,8 @@ export function TextVerification({
             className="w-full h-80 px-4 py-4 border border-slate-300 rounded-lg hover:border-blue-400 focus:ring-inset focus:ring-2 focus:ring-blue-400 resize-none transition-shadow"
           />
           <div className="mt-2 text-sm text-slate-500">
-            {/*trim whitespace, split to words and rmeove empty strings, then get number of elements*/}
-            {text1.trim().split(/\s+/).filter(w => w).length} words
+            {/*trim whitespace, then count number of characters*/}
+            {text1.trim().length} characters
           </div>
         </div>
 
@@ -46,7 +46,7 @@ export function TextVerification({
             className="w-full h-80 px-4 py-3 border border-slate-300 rounded-lg hover:border-blue-400 focus:ring-inset focus:ring-2 focus:ring-blue-400 resize-none transition-shadow"
           />
           <div className="mt-2 text-sm text-slate-500">
-            {text2.trim().split(/\s+/).filter(w => w).length} words
+            {text2.trim().length} characters
           </div>
         </div>
       </div>

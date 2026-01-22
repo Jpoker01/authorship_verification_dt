@@ -3,8 +3,8 @@ from pydantic import BaseModel, Field
 
 class PredictionRequest(BaseModel):
     """Request model for authorship verification."""
-    text1: str = Field(..., description="First text to compare", min_length=10000, max_length=50000)
-    text2: str = Field(..., description="Second text to compare", min_length=10000, max_length=50000)
+    text1: str = Field(..., description="First text to compare", min_length=5000, max_length=50000)
+    text2: str = Field(..., description="Second text to compare", min_length=5000, max_length=50000)
 
     model_config = {
         "json_schema_extra": {
