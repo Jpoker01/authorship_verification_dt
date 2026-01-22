@@ -25,6 +25,46 @@ export class ApiError extends Error {
   }
 }
 
+export async function predictAuthorship(
+  text1: string,
+  text2: string
+): Promise<PredictionResponse> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/predict/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text1,
+        text2,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new ApiError(
+        errorData.detail || `API request failed with status ${response.status}`,
+        response.status,
+        errorData
+      );
+    }
+
+    const data: PredictionResponse = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof ApiError) {
+      throw error;
+    }
+
+    // Network or other errors
+    throw new ApiError(
+      'Failed to connect to the API. Please ensure the backend is running.',
+      undefined,
+      error
+    );
+  }
+}
 
 export async function checkHealth(): Promise<boolean> {
   try {
