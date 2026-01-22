@@ -3,8 +3,8 @@ Machine Learning module for authorship verification.
 Uses TF-IDF with absolute difference and logistic classifier.
 """
 import joblib
-from pathlib import Path
 import numpy as np
+from .config import VECTORIZER_PATH, CLASSIFIER_PATH
 
 
 # Module-level variables for models
@@ -20,25 +20,21 @@ def _load_models():
     if _models_loaded:
         return
     
-    model_dir = Path(__file__).parent.parent / "models"
-    vectorizer_path = model_dir / "vectorizer.pkl"
-    classifier_path = model_dir / "classifier.pkl"
-    
-    if not vectorizer_path.exists():
+    if not VECTORIZER_PATH.exists():
         raise FileNotFoundError(
-            f"Vectorizer model not found at {vectorizer_path}. "
+            f"Vectorizer model not found at {VECTORIZER_PATH}. "
             "Please train and save the model first."
         )
     
-    if not classifier_path.exists():
+    if not CLASSIFIER_PATH.exists():
         raise FileNotFoundError(
-            f"Classifier model not found at {classifier_path}. "
+            f"Classifier model not found at {CLASSIFIER_PATH}. "
             "Please train and save the model first."
         )
     
     # Try loading with joblib (used in experiments)
-    _vectorizer = joblib.load(vectorizer_path)
-    _classifier = joblib.load(classifier_path)
+    _vectorizer = joblib.load(VECTORIZER_PATH)
+    _classifier = joblib.load(CLASSIFIER_PATH)
     
     # Verify the loaded objects are correct types
     if not hasattr(_vectorizer, 'transform'):
