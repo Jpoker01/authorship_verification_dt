@@ -1,7 +1,7 @@
 import joblib
 import numpy as np
 
-from config import MODEL_DIR, VECTORIZER_PATH, CLASSIFIER_PATH
+from .config import MODEL_DIR, VECTORIZER_PATH, CLASSIFIER_PATH
 
 #module variables
 _vectorizer = None
@@ -72,10 +72,10 @@ def predict_probability(text1: str, text2: str) -> float:
 
     features = np.abs(text1_embedding  - text2_embedding )
 
-    probabilities = _classifier.predict_proba(features)
+    probabilities = _classifier.predict_proba(features)[0, 1]
 
     # Return probability of same author (index 1)
-    same_author_probability = float(probabilities[0][1])
+    same_author_probability = float(probabilities)
 
     return same_author_probability
 

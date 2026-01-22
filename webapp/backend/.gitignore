@@ -1,5 +1,5 @@
 __pycache__/
-_venv/
+.venv/
 *.py[cod]
 *$py.class
 *.so

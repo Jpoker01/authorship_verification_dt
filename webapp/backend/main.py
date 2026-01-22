@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 # included routers
-# app.include_router(predict.router)
+app.include_router(predict.router)
 
 
 @app.get("/")
