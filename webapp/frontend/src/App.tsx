@@ -3,6 +3,8 @@ import { AppHeader } from './components/AppHeader';
 import { Instructions } from './components/Instructions';
 import { TextVerification } from './components/TextVerification.tsx';
 import { Results } from './components/Results';
+import { Error } from './components/Error';
+
 import { predictAuthorship, ApiError } from './services/api';
 
 import instructions from './assets/data/instructions.json';
@@ -51,7 +53,6 @@ function App() {
     setError(null);
     try {
       const response = await predictAuthorship(text1, text2);
-      // Convert probability (0-1) to percentage (0-100)
       const percentage = Math.round(response.same_author_probability * 100);
       setResult(percentage);
     } catch (err) {
@@ -65,6 +66,7 @@ function App() {
       setIsAnalyzing(false);
     }
   };
+
   return (
       //Fill screen horizontally, set the background color and gradients
     <div className="min-h-screen bg-gradient-to-br  from-slate-50 via-slate-50 to-slate-200">
@@ -79,20 +81,7 @@ function App() {
           isAnalyzing={isAnalyzing}
           onAnalyze={handleAnalyze}
         />
-          {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8 rounded-lg">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm text-red-700">{error}</p>
-                </div>
-              </div>
-            </div>
-          )}
+          {error != null && <Error error={error} />}
           {result !== null && <Results result={result} />}
         <Instructions
           instructions={instructions}
