@@ -1,4 +1,5 @@
 __pycache__/
+_venv/
 *.py[cod]
 *$py.class
 *.so
