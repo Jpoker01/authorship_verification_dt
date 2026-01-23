@@ -51,7 +51,7 @@ export function Instructions({
                   className="overflow-hidden bg-white"
                 >
                   <div className="px-6 py-5">
-                    <p className="text-slate-800 leading-relaxed">
+                    <p className="text-slate-800 leading-relaxed whitespace-pre-wrap">
                       {instruction.content}
                     </p>
                   </div>

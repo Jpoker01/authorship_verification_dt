@@ -1,8 +1,8 @@
 export function Footer() {
     return (
-        <footer className="bg-slate-100 border-t border-slate-300 mt-12">
-            <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-center gap-2">
+        <footer className="border-t border-slate-300 mt-12">
+            <div className="max-w mx-auto px-4 py-6">
+                <div className="flex justify-center gap-2">
                     <p className="text-md text-slate-600">For more information about this project: </p>
                     <a
                         href="https://github.com/Jpoker01"
