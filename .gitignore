@@ -16,3 +16,17 @@ __pycache__/ - compiled python bytecode
 *.so -compiled C extensions
 .Python - virtualend marker files
 
+webapp/.idea/webapp.iml
+webapp/.idea/vcs.xml
+webapp/.idea/modules.xml
+webapp/.idea/misc.xml
+webapp/.idea/inspectionProfiles/Project_Default.xml
+webapp/.idea/inspectionProfiles/profiles_settings.xml
+webapp/.idea/copilot.data.migration.ask2agent.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/copilot.data.migration.ask2agent.xml
+.idea/authorship_verification_dt.iml
