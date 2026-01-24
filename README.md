@@ -10,7 +10,7 @@ The work can be broken to two main parts:
 * **Experiments** - All of the jupyter notebooks where different methods of AI are utilized and experimented with to find the optimal solution
 * **Web application** - The web application where a chosen authorship verification model is deployed and where the user can verify authorship of two texts.
 
-### Experiments
+#### Experiments
 Lists all the experiments done for this diploma thesis.
 
 * **/experiments** - lists all experiments
@@ -28,7 +28,7 @@ Lists all the experiments done for this diploma thesis.
      * **/llm** - Lists all the LLM experiment results (used before utilizing MLFlow)
      * **/prilohaC_MLFlow_all_experiments_export.xlsx** - Lists all the MLFlow results for other experiments
      
-### Web application
+####  Web application
 Contains the source code for the frontend and backend of the final web application solution
 
 * **/webapp**
