@@ -1,8 +1,31 @@
 # Authorship verification using chosen artificial intelligence methods
 
-This project folder includes all the work performed in scope of the diploma thesis 'Authorship verification using chosen artificial intelligence methods'.  
-The final deployed website can be accesed through: <LINK_TO_BE_ADDED>  
+This project folder includes all the work performed in scope of the diploma thesis 'Authorship verification using chosen artificial intelligence methods'.  This application allows users to verify whether a given text was written by a specific author using a machine learning classifier. .
+
+The final deployed website can be accessed through: <LINK_TO_BE_ADDED>  
 The diploma thesis (in Czech) is available at: <LINK_TO_BE_ADDED>  
+
+## Quickstart guide
+
+### Running frontend application
+
+Run from frontend folder:  
+```bash
+npm install
+npm run build
+npm run preview
+```
+
+### Running backend application
+
+Run from the backend folder:  
+```bash
+pip install -r "requirements.txt"
+uvicorn main:app --reload   
+```
+
+Navigate to `http://localhost:4173` (or the URL shown in your terminal)  
+
 
 ## Project structure
 
