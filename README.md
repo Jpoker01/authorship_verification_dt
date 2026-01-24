@@ -2,7 +2,7 @@
 
 This project folder includes all the work performed in scope of the diploma thesis 'Authorship verification using chosen artificial intelligence methods'.  This application allows users to verify whether a given text was written by a specific author using a machine learning classifier. .
 
-The final deployed website can be accessed through: <LINK_TO_BE_ADDED>  
+The final deployed website can be accessed through: www.verifyauthor.dev  
 The diploma thesis (in Czech) is available at: <LINK_TO_BE_ADDED>  
 
 ## Quickstart guide
