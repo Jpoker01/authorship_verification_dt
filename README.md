@@ -20,6 +20,9 @@ npm run preview
 
 Run from the backend folder:  
 ```bash
+py -3.11 -m venv venv
+venv\Scripts\activate
+python -m pip install -U pip setuptools wheel 
 pip install -r "requirements.txt"
 uvicorn main:app --reload   
 ```
