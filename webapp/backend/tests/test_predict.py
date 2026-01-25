@@ -9,6 +9,9 @@ Tests the /predict endpoint with various scenarios including:
 import pytest
 from fastapi.testclient import TestClient
 
+# Constants for text generation
+TEXT_MULTIPLIER = 500  # Used to generate text that meets minimum length requirements
+
 
 def test_predict_success(client, mock_ml_predict, sample_texts):
     """Test successful prediction with valid inputs."""
@@ -36,7 +39,7 @@ def test_predict_success(client, mock_ml_predict, sample_texts):
 def test_predict_text1_too_short(client, mock_ml_predict):
     """Test prediction fails when text1 is too short."""
     short_text = "This is too short."
-    long_text = "Valid text. " * 500
+    long_text = "Valid text. " * TEXT_MULTIPLIER
     
     response = client.post("/predict/", json={
         "text1": short_text,
@@ -50,7 +53,7 @@ def test_predict_text1_too_short(client, mock_ml_predict):
 
 def test_predict_text2_too_short(client, mock_ml_predict):
     """Test prediction fails when text2 is too short."""
-    long_text = "Valid text. " * 500
+    long_text = "Valid text. " * TEXT_MULTIPLIER
     short_text = "This is too short."
     
     response = client.post("/predict/", json={
@@ -80,7 +83,7 @@ def test_predict_both_texts_too_short(client, mock_ml_predict):
 def test_predict_text1_too_long(client, mock_ml_predict):
     """Test prediction fails when text1 exceeds maximum length."""
     too_long_text = "x" * 50001  # Exceeds max of 50000
-    valid_text = "Valid text. " * 500
+    valid_text = "Valid text. " * TEXT_MULTIPLIER
     
     response = client.post("/predict/", json={
         "text1": too_long_text,
@@ -93,7 +96,7 @@ def test_predict_text1_too_long(client, mock_ml_predict):
 
 def test_predict_text2_too_long(client, mock_ml_predict):
     """Test prediction fails when text2 exceeds maximum length."""
-    valid_text = "Valid text. " * 500
+    valid_text = "Valid text. " * TEXT_MULTIPLIER
     too_long_text = "x" * 50001  # Exceeds max of 50000
     
     response = client.post("/predict/", json={
@@ -107,7 +110,7 @@ def test_predict_text2_too_long(client, mock_ml_predict):
 
 def test_predict_missing_text1(client, mock_ml_predict):
     """Test prediction fails when text1 is missing."""
-    valid_text = "Valid text. " * 500
+    valid_text = "Valid text. " * TEXT_MULTIPLIER
     
     response = client.post("/predict/", json={
         "text2": valid_text
@@ -119,7 +122,7 @@ def test_predict_missing_text1(client, mock_ml_predict):
 
 def test_predict_missing_text2(client, mock_ml_predict):
     """Test prediction fails when text2 is missing."""
-    valid_text = "Valid text. " * 500
+    valid_text = "Valid text. " * TEXT_MULTIPLIER
     
     response = client.post("/predict/", json={
         "text1": valid_text
