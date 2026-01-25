@@ -2,7 +2,7 @@
 
 This project folder includes all the work performed in scope of the diploma thesis 'Authorship verification using chosen artificial intelligence methods'.  This application allows users to verify whether a given text was written by a specific author using a machine learning classifier. .
 
-The final deployed website can be accessed through: <LINK_TO_BE_ADDED>  
+The final deployed website can be accessed through: www.verifyauthor.dev  
 The diploma thesis (in Czech) is available at: <LINK_TO_BE_ADDED>  
 
 ## Quickstart guide
@@ -20,6 +20,9 @@ npm run preview
 
 Run from the backend folder:  
 ```bash
+py -3.11 -m venv .venv
+.venv\Scripts\activate
+python -m pip install -U pip setuptools wheel 
 pip install -r "requirements.txt"
 uvicorn main:app --reload   
 ```
@@ -33,7 +36,7 @@ The work can be broken to two main parts:
 * **Experiments** - All of the jupyter notebooks where different methods of AI are utilized and experimented with to find the optimal solution
 * **Web application** - The web application where a chosen authorship verification model is deployed and where the user can verify authorship of two texts.
 
-#### Experiments
+### Experiments
 Lists all the experiments done for this diploma thesis.
 
 * **/experiments** - lists all experiments
@@ -51,7 +54,7 @@ Lists all the experiments done for this diploma thesis.
      * **/llm** - Lists all the LLM experiment results (used before utilizing MLFlow)
      * **/prilohaC_MLFlow_all_experiments_export.xlsx** - Lists all the MLFlow results for other experiments
      
-####  Web application
+###  Web application
 Contains the source code for the frontend and backend of the final web application solution
 
 * **/webapp**
