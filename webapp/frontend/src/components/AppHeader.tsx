@@ -11,8 +11,8 @@ export function AppHeader() {
   };
     return (
     <div className="text-center mb-12">
-      <div className="flex items-center justify-center mb-4">
-        <BookCheck className="w-11 h-11 text-blue-900 mr-3"/>
+      <div className="flex items-center justify-center mb-4 flex-0">
+        <BookCheck className="w-28 h-28 md:w-14 md:h-14 lg:w-11 lg:h-11 text-blue-900 mr-3 "/>
         <h1 className="text-5xl font-bold text-slate-900">
           Authorship Verification
         </h1>
