@@ -4,6 +4,23 @@ This is a backend application developed as part of a diploma thesis on authorshi
 
 This app runs on Python 3.11 and uses FastAPI v0.109.1. The full list of used libraries is listed in the "requirements.txt" file.
 
+## Testing
 
+The backend includes comprehensive unit tests for all FastAPI endpoints. To run the tests:
 
+```bash
+# Install dependencies
+pip install -r requirements.txt
+pip install -r test-requirements.txt
 
+# Run all tests
+pytest
+
+# Run tests with verbose output
+pytest -v
+
+# Run specific test file
+pytest tests/test_main.py
+```
+
+For more information about the testing setup, see [tests/README.md](tests/README.md).
