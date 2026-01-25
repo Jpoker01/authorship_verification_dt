@@ -103,7 +103,15 @@ def test_predict_missing_both_texts(client, mock_predict):
     assert response.status_code == 422
     mock_predict.assert_not_called()
 
-# TODO: predict with unicode characters
+def test_predict_texts_with_null_values(client, mock_predict):
+    response = client.post("/predict/", json={
+        "text1": None,
+        "text2": None
+    })
+    assert response.status_code == 422
+    mock_predict.assert_not_called()
+
+
 def test_predict_unicode_characters(client, mock_predict):
     """Test prediction with unicode characters."""
     text1 = "这是一个测。😂✌️。😂" * 2_500
@@ -199,12 +207,21 @@ def test_predict_numeric_values(client, mock_predict):
 
     mock_predict.assert_called_once_with(text, text)
 
-# TODO: empty json body
 
-# TODO: invalid json body
+def test_empty_json_body(client, mock_predict):
+    """Test prediction with empty json body."""
+    response = client.post("/predict/", json={})
+    assert response.status_code == 422
+    mock_predict.assert_not_called()
 
+def test_invalid_json_body(client, mock_predict):
+    """Test prediction with invalid json body."""
+    response = client.post("/predict/", data="This is not JSON")
+    assert response.status_code == 422
+    mock_predict.assert_not_called()
 
-# TODO: wrong http method
-
-# TODO: model not loaded
+def test_invalid_predict_http_method(client):
+    """Test that GET is not allowed on predict endpoint."""
+    response = client.get("/predict/")
+    assert response.status_code == 405 #method not allowed code
 
