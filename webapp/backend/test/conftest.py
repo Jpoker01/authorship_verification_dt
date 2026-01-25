@@ -1,18 +1,23 @@
 import json
+import random
+import sys
+from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 from fastapi.testclient import TestClient
-from unittest.mock import patch
-from pathlib import Path
 
-from .. import main
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from main import app
+
 
 @pytest.fixture
 def client():
     """
     Create a test client for the FastAPI application.
     """
-    return TestClient(main.app)
+    return TestClient(app)
+
 
 @pytest.fixture
 def mock_predict():
@@ -22,7 +27,16 @@ def mock_predict():
     with patch('main.predict') as mock_predict:
         yield mock_predict
 
+
 @pytest.fixture
 def sample_texts():
-    json.load(Path(__file__).parent / "data" / "sample_texts.json"
+    filepath = Path(__file__).parent / "data" / "five_samples.json"
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
+    sample = random.choice(data)
+
+    return {
+        "text1": sample["text1"],
+        "text2": sample["text2"]
+    }
