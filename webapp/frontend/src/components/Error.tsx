@@ -6,7 +6,7 @@ interface ErrorSectionProperties {
 
 export function Error({ error }: ErrorSectionProperties) {
   return (
-<div className="rounded-2xl shadow-lg p-4 mb-8 pb-2 animate-fadeIn bg-red-50">
+<div className="rounded-2xl shadow-lg p-4 mb-8 pb-4 animate-fadeIn bg-red-50">
   <div className="flex items-center gap-4 ml-2 mb-3">
     <CircleX className="w-11 h-11 text-red-500 flex-shrink-0 mt-0.5" />
     <div className="flex-1">
