@@ -356,7 +356,7 @@ def test_predict_multiple_requests_in_sequence(client, mock_ml_predict, sample_t
     assert response2.status_code == 200
     assert response2.json()["same_author_probability"] == 0.9
     
-    # Verify both calls were made
+    # Verify second call was made (after reset)
     assert mock_ml_predict.call_count == 1
 
 
