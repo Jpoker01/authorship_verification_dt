@@ -4,6 +4,19 @@ This is a backend application developed as part of a diploma thesis on authorshi
 
 This app runs on Python 3.11 and uses FastAPI v0.109.1. The full list of used libraries is listed in the "requirements.txt" file.
 
+## Authentication
+
+The application supports optional token-based authentication to restrict access. See [AUTH.md](AUTH.md) for details.
+
+**Quick setup:**
+```bash
+# Enable authentication
+export ACCESS_TOKEN="your_secret_token"
+
+# Access with token
+curl "http://localhost:8000/?token=your_secret_token"
+```
+
 ## Testing
 
 The backend includes comprehensive unit tests for all FastAPI endpoints. To run the tests:

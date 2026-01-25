@@ -2,6 +2,7 @@
 Pytest configuration and shared fixtures for FastAPI testing.
 """
 import sys
+import os
 from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
@@ -9,6 +10,9 @@ from unittest.mock import Mock, patch
 
 # Add parent directory to path to allow imports from backend modules
 sys.path.insert(0, str(Path(__file__).parent.parent))
+
+# Ensure ACCESS_TOKEN is not set by default for tests
+os.environ.pop('ACCESS_TOKEN', None)
 
 
 @pytest.fixture
@@ -18,6 +22,7 @@ def client():
     
     This fixture provides a TestClient instance that can be used
     to make requests to the FastAPI application without starting a server.
+    Authentication is disabled for these tests by not setting ACCESS_TOKEN.
     """
     from main import app
     return TestClient(app)

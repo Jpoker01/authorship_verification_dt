@@ -1,12 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import predict
+from middleware.auth import TokenAuthMiddleware
+from core.config import ACCESS_TOKEN
 
 app = FastAPI(
     title="Authorship Verification DT - backend",
     description="API for verifying if two texts are written by the same author",
     version="1.0.0"
 )
+
+# Token-based authentication middleware (if ACCESS_TOKEN is set)
+# Access is controlled via query parameter: ?token=YOUR_TOKEN
+app.add_middleware(TokenAuthMiddleware)
 
 # CORS set up - only for demo purposes
 # TODO: replace with domain once set to production
