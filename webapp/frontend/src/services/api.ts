@@ -34,9 +34,9 @@ export async function predictAuthorship(
     var text2_length = text2.trim().length;
 
     if (text1_length < MIN_CHAR_COUNT ||  text2_length < MIN_CHAR_COUNT) {
-      throw new ApiError('Text has less then 5000 characters. Please provide longer text.');
+      throw new ApiError(`Text has less then ${MIN_CHAR_COUNT} characters. Please provide longer text.`);
     } else if (text1_length >  MAX_CHAR_COUNT || text2_length > MAX_CHAR_COUNT) {
-      throw new ApiError('Text has more then 100000 characters. Please provide shorter text.');
+      throw new ApiError(`Text has more then ${MAX_CHAR_COUNT} characters. Please provide shorter text.`);
     }
 
     const response = await fetch(`${API_BASE_URL}/predict/`, {
