@@ -97,14 +97,14 @@ def test_predict_missing_text2(client, mock_predict, sample_text):
     assert response.status_code == 422
     mock_predict.assert_not_called()
 
-def predict_missing_both_texts(client, mock_predict):
+def test_predict_missing_both_texts(client, mock_predict):
     """Test prediction fails when both texts are missing."""
     response = client.post("/predict/", json={})
     assert response.status_code == 422
     mock_predict.assert_not_called()
 
 # TODO: predict with unicode characters
-def predict_unicode_characters(client, mock_predict):
+def test_predict_unicode_characters(client, mock_predict):
     """Test prediction with unicode characters."""
     text1 = "这是一个测。😂✌️。😂" * 2_500
     text2 = "这是另一🐻💀️。😂️" * 2_500
@@ -124,7 +124,7 @@ def predict_unicode_characters(client, mock_predict):
 
     mock_predict.assert_called_once_with(text1, text2)
 
-def predict_special_characters(client, mock_predict):
+def test_predict_special_characters(client, mock_predict):
     """Text predicti on with text samples made of special characters only"""
     text = "!@#$%^&*()_+-={}[]|\\:;\"'<>,.?" * 1000
     mock_predict.return_value = {
@@ -141,11 +141,63 @@ def predict_special_characters(client, mock_predict):
     assert data["same_author_probability"] == 0.45
     mock_predict.assert_called_once_with(text, text)
 
-# TODO: predict with newlines and tabs
+def test_predict_newlines_and_tabs(client, mock_predict):
+    """Test prediction with texts containing newlines and tabs."""
+    text = "\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t\n\t" * 1000
 
-# TODO: predict with white space
+    mock_predict.return_value = {
+        "same_author_probability": 0.45
+    }
 
-# TODO: predict with numeric content
+    response = client.post("/predict/", json={
+        "text1": text,
+        "text2": text
+    })
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["same_author_probability"] == 0.45
+
+    mock_predict.assert_called_once_with(text, text)
+
+
+def test_predict_whitespace(client, mock_predict):
+    """Test prediction with texts containing newlines and tabs."""
+    text = "            " * 1000
+
+    mock_predict.return_value = {
+        "same_author_probability": 0.45
+    }
+
+    response = client.post("/predict/", json={
+        "text1": text,
+        "text2": text
+    })
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["same_author_probability"] == 0.45
+
+    mock_predict.assert_called_once_with(text, text)
+
+def test_predict_numeric_values(client, mock_predict):
+    """Test prediction with texts containing newlines and tabs."""
+    text = "1234567890" * 1000
+
+    mock_predict.return_value = {
+        "same_author_probability": 0.45
+    }
+
+    response = client.post("/predict/", json={
+        "text1": text,
+        "text2": text
+    })
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["same_author_probability"] == 0.45
+
+    mock_predict.assert_called_once_with(text, text)
 
 # TODO: empty json body
 
