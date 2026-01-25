@@ -9,8 +9,12 @@ Tests the /predict endpoint with various scenarios including:
 import pytest
 from fastapi.testclient import TestClient
 
-# Constants for text generation
+# Constants for text generation and validation
+MIN_TEXT_LENGTH = 5000  # Minimum required text length
+MAX_TEXT_LENGTH = 50000  # Maximum allowed text length
 TEXT_MULTIPLIER = 500  # Used to generate text that meets minimum length requirements
+VALID_TEXT = "Valid text. " * TEXT_MULTIPLIER  # Pre-generated valid text for tests
+EXCEEDS_MAX_TEXT = "x" * (MAX_TEXT_LENGTH + 1)  # Text that exceeds maximum length
 
 
 def test_predict_success(client, mock_ml_predict, sample_texts):
@@ -39,11 +43,10 @@ def test_predict_success(client, mock_ml_predict, sample_texts):
 def test_predict_text1_too_short(client, mock_ml_predict):
     """Test prediction fails when text1 is too short."""
     short_text = "This is too short."
-    long_text = "Valid text. " * TEXT_MULTIPLIER
     
     response = client.post("/predict/", json={
         "text1": short_text,
-        "text2": long_text
+        "text2": VALID_TEXT
     })
     
     assert response.status_code == 422  # Validation error
@@ -53,11 +56,10 @@ def test_predict_text1_too_short(client, mock_ml_predict):
 
 def test_predict_text2_too_short(client, mock_ml_predict):
     """Test prediction fails when text2 is too short."""
-    long_text = "Valid text. " * TEXT_MULTIPLIER
     short_text = "This is too short."
     
     response = client.post("/predict/", json={
-        "text1": long_text,
+        "text1": VALID_TEXT,
         "text2": short_text
     })
     
@@ -82,12 +84,9 @@ def test_predict_both_texts_too_short(client, mock_ml_predict):
 
 def test_predict_text1_too_long(client, mock_ml_predict):
     """Test prediction fails when text1 exceeds maximum length."""
-    too_long_text = "x" * 50001  # Exceeds max of 50000
-    valid_text = "Valid text. " * TEXT_MULTIPLIER
-    
     response = client.post("/predict/", json={
-        "text1": too_long_text,
-        "text2": valid_text
+        "text1": EXCEEDS_MAX_TEXT,
+        "text2": VALID_TEXT
     })
     
     assert response.status_code == 422  # Validation error
@@ -96,12 +95,9 @@ def test_predict_text1_too_long(client, mock_ml_predict):
 
 def test_predict_text2_too_long(client, mock_ml_predict):
     """Test prediction fails when text2 exceeds maximum length."""
-    valid_text = "Valid text. " * TEXT_MULTIPLIER
-    too_long_text = "x" * 50001  # Exceeds max of 50000
-    
     response = client.post("/predict/", json={
-        "text1": valid_text,
-        "text2": too_long_text
+        "text1": VALID_TEXT,
+        "text2": EXCEEDS_MAX_TEXT
     })
     
     assert response.status_code == 422  # Validation error
@@ -110,10 +106,8 @@ def test_predict_text2_too_long(client, mock_ml_predict):
 
 def test_predict_missing_text1(client, mock_ml_predict):
     """Test prediction fails when text1 is missing."""
-    valid_text = "Valid text. " * TEXT_MULTIPLIER
-    
     response = client.post("/predict/", json={
-        "text2": valid_text
+        "text2": VALID_TEXT
     })
     
     assert response.status_code == 422  # Validation error
@@ -122,10 +116,8 @@ def test_predict_missing_text1(client, mock_ml_predict):
 
 def test_predict_missing_text2(client, mock_ml_predict):
     """Test prediction fails when text2 is missing."""
-    valid_text = "Valid text. " * TEXT_MULTIPLIER
-    
     response = client.post("/predict/", json={
-        "text1": valid_text
+        "text1": VALID_TEXT
     })
     
     assert response.status_code == 422  # Validation error
