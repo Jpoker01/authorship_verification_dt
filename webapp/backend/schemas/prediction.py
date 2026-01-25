@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from ..core import config
+from core import config
 
 class PredictionRequest(BaseModel):
     """Request model for authorship verification."""

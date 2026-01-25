@@ -24,9 +24,21 @@ def mock_predict():
     """
     Mack the predict function from predict router to avoid loading the actual model
     """
-    with patch('main.predict') as mock_predict:
+    with patch('core.ml.predict') as mock_predict:
         yield mock_predict
 
+@pytest.fixture
+def sample_text():
+    filepath = Path(__file__).parent / "data" / "five_samples.json"
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    sample = random.choice(data)
+    sample_text_key = random.choice(["text1", "text2"])
+
+    return {
+        "text": sample[sample_text_key],
+    }
 
 @pytest.fixture
 def sample_texts():
