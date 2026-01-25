@@ -65,6 +65,16 @@ pytest tests/ --cov=. --cov-report=html
 - Probability boundary testing
 - HTTP method validation
 - Invalid JSON handling
+- Edge cases with exact minimum/maximum lengths
+- Unicode and special character handling
+- Whitespace and formatting tests
+- Response schema validation
+- Multiple consecutive requests
+- Different text lengths combinations
+- Numeric content handling
+- Type validation (null, wrong types, arrays)
+- ML module error scenarios (invalid probabilities, missing fields, different exceptions)
+- Repetitive text patterns
 
 ## Fixtures
 
