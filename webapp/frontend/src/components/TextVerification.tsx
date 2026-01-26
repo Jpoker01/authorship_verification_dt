@@ -1,3 +1,5 @@
+import { MIN_CHAR_COUNT, MAX_CHAR_COUNT } from '../services/config';
+
 interface TextVerificationProperties{
   text1: string;
   text2: string;
@@ -15,6 +17,30 @@ export function TextVerification({
   isAnalyzing,
   onAnalyze
 }: TextVerificationProperties) {
+  const text1Length = text1.trim().length;
+  const text2Length = text2.trim().length;
+
+  // Check if texts meet the requirements
+  const isText1Valid = text1Length >= MIN_CHAR_COUNT && text1Length <= MAX_CHAR_COUNT;
+  const isText2Valid = text2Length >= MIN_CHAR_COUNT && text2Length <= MAX_CHAR_COUNT;
+  const canAnalyze = isText1Valid && isText2Valid && !isAnalyzing;
+
+  const getCharCountClass = (length: number) => {
+    if (length === 0) return 'text-slate-700';
+    if (length < MIN_CHAR_COUNT || length > MAX_CHAR_COUNT) return 'text-red-600';
+    return 'text-green-600';
+  };
+
+  const getCharCountMessage = (length: number) => {
+    if (length < MIN_CHAR_COUNT) {
+      return `${length.toLocaleString()} / ${MIN_CHAR_COUNT.toLocaleString()} characters`;
+    }
+    if (length > MAX_CHAR_COUNT) {
+      return `${length.toLocaleString()} / ${MAX_CHAR_COUNT.toLocaleString()} characters`;
+    }
+    return `${length.toLocaleString()} characters ✓`;
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8 mb-10">
       <h2 className="text-2xl font-semibold text-slate-700 mb-6">Text Input</h2>
@@ -27,11 +53,10 @@ export function TextVerification({
             value={text1}
             onChange={(e) => onText1Change(e.target.value)}
             placeholder="Paste the first text here..."
-            className="w-full h-80 px-4 py-4 border border-slate-300 rounded-lg hover:border-blue-400 focus:ring-inset focus:ring-2 focus:ring-blue-400 resize-none transition-shadow"
+            className={"w-full h-80 px-4 py-4 border rounded-lg hover:border-blue-400 focus:ring-inset focus:ring-2 focus:ring-blue-400 resize-none transition-shadow"}
           />
-          <div className="mt-2 text-sm text-slate-500">
-            {/*trim whitespace, then count number of characters*/}
-            {text1.trim().length} characters
+          <div className={`mt-2 text-md font-semibold ${getCharCountClass(text1Length)}`}>
+            {getCharCountMessage(text1Length)}
           </div>
         </div>
 
@@ -43,21 +68,21 @@ export function TextVerification({
             value={text2}
             onChange={(e) => onText2Change(e.target.value)}
             placeholder="Paste the second text here..."
-            className="w-full h-80 px-4 py-3 border border-slate-300 rounded-lg hover:border-blue-400 focus:ring-inset focus:ring-2 focus:ring-blue-400 resize-none transition-shadow"
+            className={"w-full h-80 px-4 py-3 border rounded-lg hover:border-blue-400 focus:ring-inset focus:ring-2 focus:ring-blue-400 resize-none transition-shadow"}
           />
-          <div className="mt-2 text-sm text-slate-500">
-            {text2.trim().length} characters
+          <div className={`mt-2 text-md font-semibold ${getCharCountClass(text2Length)}`}>
+            {getCharCountMessage(text2Length)}
           </div>
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex flex-col items-center gap-2">
         <button
           onClick={() => {
             onAnalyze();
           }}
-          disabled={!text1.trim() || !text2.trim() || isAnalyzing}
-          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-cyan-600 disabled:from-slate-400 disabled:to-slate-500 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:shadow-none transition-all transform hover:scale-105 active:scale-90"
+          disabled={!canAnalyze}
+          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-cyan-600 disabled:from-slate-400 disabled:to-slate-400 disabled:cursor-not-allowed transition-all"
         >
           {isAnalyzing ? (
             <span className="flex items-center">
