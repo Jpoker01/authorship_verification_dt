@@ -44,15 +44,15 @@ Lists all the experiments done for this diploma thesis.
    * **/conf** - Space for configurations
        * **/base** - Shared configuration like parameters
        * **/local** - Local configurations such as credentials
-   * **/notebooks** - Jupyter notebooks - naming convention "YYYYMMDD_developerinitials - description"
-     * **/dataset** - Notebooks related to dataset processing and exploration
+   * **/notebooks** - Jupyter notebooks - naming convention "YYYYMMDD_developerinitials_description"
+     * **/dataset** - Notebooks related to dataset processing and analysis
      * **/graph** - Notebooks related to experiments utilizing integrated syntactic graphs
      * **/llm** - Notebooks utilizing LLMs
      * **/traditional** - Notebooks utilizing traditional BOW/TF-IDF representations for experiments 
      * **/transformer** - Notebooks utilizing transformer-based models for experiments
    * **/results** - Final analysis documents
-     * **/llm** - Lists all the LLM experiment results (used before utilizing MLFlow)
-     * **/prilohaC_MLFlow_all_experiments_export.xlsx** - Lists all the MLFlow results for other experiments
+     * **/llm** - Lists all the LLM experiment results (done before utilizing MLFlow)
+     * **/prilohaC_MLFlow_all_experiments_export.xlsx** - Lists all the MLFlow results for other experiments than those utilizing LLMs
      
 ###  Web application
 Contains the source code for the frontend and backend of the final web application solution
