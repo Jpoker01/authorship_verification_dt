@@ -9,7 +9,7 @@ The diploma thesis (in Czech) is available at: <LINK_TO_BE_ADDED>
 
 ### Running frontend application
 
-Run from the frontend folder:  
+Run from the root of the frontend folder:  
 ```bash
 npm install
 npm run build
