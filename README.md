@@ -16,6 +16,8 @@ npm run build
 npm run preview
 ```
 
+Navigate to `http://localhost:4173` (or the URL shown in your terminal)  
+
 ### Running backend application
 
 Run from the backend folder:  
@@ -26,8 +28,6 @@ python -m pip install -U pip setuptools wheel
 pip install -r "requirements.txt"
 uvicorn main:app --reload   
 ```
-
-Navigate to `http://localhost:4173` (or the URL shown in your terminal)  
 
 
 ## Project structure
